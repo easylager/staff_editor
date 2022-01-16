@@ -1,0 +1,10 @@
+{% extends 'staff/base.html' %}
+{% block title %}
+Employees
+{% endblock %}
+{% block content %}
+<h1 class="mb-5">Employees:</h1>
+{% for obj in objects %}
+     {% include 'staff/list/includes/employee_card_template.html' %}
+{% endfor %}
+{% endblock %}

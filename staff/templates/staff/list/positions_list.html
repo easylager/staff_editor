@@ -1,0 +1,10 @@
+{% extends 'staff/base.html' %}
+{% block title %}
+Positions
+{% endblock %}
+{% block content %}
+<h1 class="mb-5">Positions:</h1>
+{% for obj in objects %}
+     {% include 'staff/list/includes/position_card_template.html' %}
+{% endfor %}
+{% endblock %}

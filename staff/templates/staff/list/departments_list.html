@@ -1,0 +1,10 @@
+{% extends 'staff/base.html' %}
+{% block title %}
+Departments
+{% endblock %}
+{% block content %}
+<h1 class="mb-5">Departments:</h1>
+{% for obj in objects %}
+     {% include 'staff/list/includes/department_card_template.html' %}
+{% endfor %}
+{% endblock %}
