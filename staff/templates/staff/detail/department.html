@@ -3,11 +3,15 @@
 {{ object.title }} employees
 {% endblock %}
 {% block content %}
-<h1 class="mb-5">Departments:</h1>
-{% if objects %}
-    {% for obj in object.employees %}
+<h1 class="mb-5">{{ department.title }} employees:</h1>
+{% if department.employees %}
+    {% for obj in department.employees.all %}
          {% include 'staff/list/includes/employee_card_template.html' %}
     {% endfor %}
+    <div>
+        To edit department - <a href="{{ department.get_update_url }}" class="btn btn-light edit">Edit</a>
+        To delete department - <a href="{{ department.get_delete_url }}" class="btn btn-light edit">Delete</a>
+    </div>
 {% else %}
     <div>
          <h3>Department has not employees yet</h3>

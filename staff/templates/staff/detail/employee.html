@@ -12,8 +12,12 @@
           <div class="card-body">
             <h5 class="card-title">Department</h5>
             {% if employee.department %}
-              <p class="card-text">{{ employee.department }}</p>
-              <a href="{{ employee.department.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+              <p class="card-text">{{ employee.department|title }}</p>
+            <ul>
+              <li><a href="{{ employee.department.get_absolute_url }}" class="btn btn-primary">Подробнее</a></li>
+              <p></p>
+              <li><a href="{{ employee.get_update_url }}" class="btn btn-success">Change</a></li>
+            </ul>
             {% else %}
               <p class="card-text">Department is not selected yet</p>
             {% endif %}
@@ -26,8 +30,13 @@
           <div class="card-body">
             <h5 class="card-title">Position</h5>
             {% if employee.position %}
-            <p class="card-text">{{ employee.position }}</p>
-            <a href="{{ employee.position.get_absolute_url }}" class="btn btn-primary">Поробнее</a>
+            <p class="card-text">{{ employee.position|title }}</p>
+            <ul>
+              <li><a href="{{ employee.position.get_absolute_url }}" class="btn btn-primary">Поробнее</a></li>
+              <p></p>
+              <li><a href="{{ employee.get_update_url }}" class="btn btn-success">Change</a></li>
+            </ul>
+
             {% else %}
               <p class="card-text">Position is not selected yet</p>
             {% endif %}

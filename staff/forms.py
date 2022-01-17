@@ -15,6 +15,15 @@ class UserRegistrationForm(UserCreationForm):
         fields = ['username', 'full_name', 'email', 'password1', 'password2', 'department', 'position']
 
 
+class EmployeeForm(forms.ModelForm):
+    class Meta:
+        model = Employee
+        fields = ['department', 'position']
+        widgets = {
+            'department': forms.TextInput(attrs={'class': 'form-control'}),
+            'position': forms.TextInput(attrs={'class': 'form-control'})}
+
+
 class DepartmentForm(forms.ModelForm):
     class Meta:
         model = Department

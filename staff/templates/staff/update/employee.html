@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 
-      <form action="{{ department.get_update_url }}" method="post" novalidate>
+      <form action="{{ employee.get_update_url }}" method="post" novalidate>
             {% csrf_token %}
             <div class="form-group">
 
@@ -16,7 +16,7 @@
                   {% endif %}
 
                   <div class="form-group">
-                       {{ form|crispy }}
+                        {{ form|crispy }}
                   </div>
 
             </div>

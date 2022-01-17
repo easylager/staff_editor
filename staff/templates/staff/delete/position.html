@@ -1,12 +1,12 @@
 {% extends 'staff/base.html' %}
 
 {% block title %}
-   <p>Tag Delete {{ tag.title|title }} - {{ block.super }}</p>
+   <p>Tag Delete {{ position.title|title }} - {{ block.super }}</p>
 {% endblock %}
 {% block content %}
-    <form action="{% url 'department_delete_url' slug=department.slug %}" method="post">
+    <form action="{{ position.get_delete_url }}" method="post">
         {% csrf_token %}
-        <h3>Are you sure want to delete <b>{{ position.slug }}</b> tag?</h3>
+        <h3>Are you sure want to delete <b>{{ position.title }}</b> position?</h3>
         <a href="{{ position.get_absolute_url }}">Cancel</a>
         <button type="submit" class="btn btn-danger">Delete</button>
     </form>

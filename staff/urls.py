@@ -10,6 +10,7 @@ urlpatterns = [
     path('positions_list/', PositionsList.as_view(), name='positions_list_url'),
     path('employees_list/', EmployeesList.as_view(), name='employees_list_url'),
     path('employee/<str:slug>/detail', EmployeeDetail.as_view(), name='employee_detail_url'),
+    path('employee/<str:slug>/update', EmployeeUpdate.as_view(), name='employee_update_url'),
     path('department/create', DepartmentCreate.as_view(), name='department_create_url'),
     path('position/create', PositionCreate.as_view(), name='position_create_url'),
     path('department/<str:slug>/update', DepartmentUpdate.as_view(), name='department_update_url'),

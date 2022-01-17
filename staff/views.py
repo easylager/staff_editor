@@ -56,6 +56,13 @@ class EmployeeDetail(LoginRequiredMixin, ObjectDetailMixin, View):
     template = 'staff/detail/employee.html'
 
 
+class EmployeeUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    model = Employee
+    model_form = EmployeeForm
+    template = 'staff/update/employee.html'
+    raise_exception = True
+
+
 class DepartmentsList(LoginRequiredMixin, ObjectListMixin, View):
     model = Department
     template = 'staff/list/departments_list.html'
@@ -81,6 +88,7 @@ class DepartmentDelete(LoginRequiredMixin, ObjectsDeleteMixin, View):
     model = Department
     template = 'staff/delete/department.html'
     link = 'departments_list_url'
+    raise_exception = True
 
 
 class DepartmentDetail(LoginRequiredMixin, ObjectDetailMixin, View):
@@ -113,7 +121,7 @@ class PositionUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
 class PositionDelete(LoginRequiredMixin, ObjectsDeleteMixin, View):
     model = Position
     template = 'staff/delete/position.html'
-    link = 'position_list_url'
+    link = 'positions_list_url'
 
 
 class PositionDetail(LoginRequiredMixin, ObjectDetailMixin, View):

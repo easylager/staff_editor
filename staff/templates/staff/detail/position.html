@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'staff/base.html' %}
+{% block title %}
+{{ object.title }} employees
+{% endblock %}
+{% block content %}
+<h1 class="mb-5">{{ position.title }}s:</h1>
+{% if position.employees %}
+    {% for obj in position.employees.all %}
+         {% include 'staff/list/includes/employee_card_template.html' %}
+    {% endfor %}
+     <div>
+        To edit position - <a href="{{ position.get_update_url }}" class="btn btn-light edit">Edit</a>
+         To delete position - <a href="{{ position.get_delete_url }}" class="btn btn-light edit">Delete</a>
+    </div>
+{% else %}
+    <div>
+         <h3>Position has not employees yet</h3>
+    </div>
+{% endif %}
 
-</body>
-</html>
+{% endblock %}
