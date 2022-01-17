@@ -63,9 +63,12 @@ class DepartmentsList(LoginRequiredMixin, ObjectListMixin, View):
 
 
 class DepartmentCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = Department
     model_form = DepartmentForm
     template = 'staff/create/department.html'
+    redirect_template = 'staff/list/departments_list.html'
     raise_exception = True
+
 
 class DepartmentUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Department
@@ -80,6 +83,11 @@ class DepartmentDelete(LoginRequiredMixin, ObjectsDeleteMixin, View):
     link = 'departments_list_url'
 
 
+class DepartmentDetail(LoginRequiredMixin, ObjectDetailMixin, View):
+    model = Department
+    template = 'staff/detail/department.html'
+    raise_exception = True
+
 
 class PositionsList(LoginRequiredMixin, ObjectListMixin, View):
     model = Position
@@ -88,8 +96,10 @@ class PositionsList(LoginRequiredMixin, ObjectListMixin, View):
 
 
 class PositionCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = Position
     model_form = PositionForm
     template = 'staff/create/position.html'
+    redirect_template = 'staff/list/positions_list.html'
     raise_exception = True
 
 
@@ -104,3 +114,10 @@ class PositionDelete(LoginRequiredMixin, ObjectsDeleteMixin, View):
     model = Position
     template = 'staff/delete/position.html'
     link = 'position_list_url'
+
+
+class PositionDetail(LoginRequiredMixin, ObjectDetailMixin, View):
+    model = Position
+    template = 'staff/detail/position.html'
+    raise_exception = True
+

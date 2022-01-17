@@ -4,7 +4,17 @@ Positions
 {% endblock %}
 {% block content %}
 <h1 class="mb-5">Positions:</h1>
-{% for obj in objects %}
-     {% include 'staff/list/includes/position_card_template.html' %}
-{% endfor %}
+{% if objects %}
+    {% for obj in objects %}
+         {% include 'staff/list/includes/position_card_template.html' %}
+    {% endfor %}
+{% else %}
+    <div>
+         <h3>Positions are not added yet</h3>
+
+    </div>
+{% endif %}
+    <div>
+        To add new position - <a href="{% url 'position_create_url' %}" class="btn btn-light edit">Add</a>
+    </div>
 {% endblock %}

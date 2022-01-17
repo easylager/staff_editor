@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 
 
 class LoginForm(forms.Form):
@@ -14,12 +14,43 @@ class UserRegistrationForm(UserCreationForm):
         model = Employee
         fields = ['username', 'full_name', 'email', 'password1', 'password2', 'department', 'position']
 
-class DepartmentForm(forms.Form):
+
+class DepartmentForm(forms.ModelForm):
     class Meta:
         model = Department
-        fields = ['department']
+        fields = ['title', 'slug']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})}
 
-class PositionForm(forms.Form):
+        labels = {
+            'title': "Title",
+            "slug": "Slug - Optional field"
+        }
+
+    def clean_slug(self):
+        new_slug = self.cleaned_data['slug'].lower()
+        if new_slug == 'create':
+            raise ValidationError('It can not be created')
+        return new_slug
+
+
+class PositionForm(forms.ModelForm):
     class Meta:
         model = Position
-        fields = ['position']
+        fields = ['title', 'slug']
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})}
+        labels = {
+            'title': "Title",
+            "slug": "Slug - Optional field"
+        }
+
+
+    def clean_slug(self):
+        new_slug = self.cleaned_data['slug'].lower()
+        if new_slug == 'create':
+            raise ValidationError('It can not be created')
+        return new_slug

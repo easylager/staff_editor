@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from .models import *
 from django.shortcuts import redirect, reverse
 
 class ObjectListMixin:
@@ -20,8 +19,10 @@ class ObjectDetailMixin:
 
 
 class ObjectCreateMixin:
+    model = None
     model_form = None
     template = None
+    redirect_template = None
 
     def get(self, request):
         form = self.model_form()
@@ -31,8 +32,9 @@ class ObjectCreateMixin:
         bound_form = self.model_form(request.POST)
 
         if bound_form.is_valid():
-            new_post = bound_form.save()
-            return redirect(new_post)
+            new_position = bound_form.save()
+            objects = self.model.objects.all()
+            return render(request, self.redirect_template, context={'objects': objects})
         return render(request, self.template, context={'form': bound_form})
 
 

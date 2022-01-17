@@ -4,7 +4,16 @@ Departments
 {% endblock %}
 {% block content %}
 <h1 class="mb-5">Departments:</h1>
-{% for obj in objects %}
-     {% include 'staff/list/includes/department_card_template.html' %}
-{% endfor %}
+{% if objects %}
+    {% for obj in objects %}
+         {% include 'staff/list/includes/department_card_template.html' %}
+    {% endfor %}
+{% else %}
+    <div>
+         <h3>Departments are not added yet</h3>
+    </div>
+{% endif %}
+    <div>
+        To add new department - <a href="{% url 'department_create_url' %}" class="btn btn-light edit">Add new</a>
+    </div>
 {% endblock %}

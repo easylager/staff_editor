@@ -1,0 +1,16 @@
+{% extends 'staff/base.html' %}
+{% block title %}
+{{ object.title }} employees
+{% endblock %}
+{% block content %}
+<h1 class="mb-5">Departments:</h1>
+{% if objects %}
+    {% for obj in object.employees %}
+         {% include 'staff/list/includes/employee_card_template.html' %}
+    {% endfor %}
+{% else %}
+    <div>
+         <h3>Department has not employees yet</h3>
+    </div>
+{% endif %}
+{% endblock %}

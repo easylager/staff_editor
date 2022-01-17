@@ -13,10 +13,10 @@ def gen_slug(k):
 
 
 class Employee(AbstractUser):
-    full_name = models.CharField(max_length=40, default=None)
+    full_name = models.CharField(max_length=50, default=None, blank=True, null=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True, default=None)
-    position = models.ForeignKey('Position', on_delete=models.RESTRICT, blank=True, null=True)
-    department = models.ForeignKey('Department', on_delete=models.RESTRICT, blank=True, null=True)
+    position = models.ForeignKey('Position', related_name='employees', on_delete=models.CASCADE, blank=True, null=True)
+    department = models.ForeignKey('Department', related_name='employees', on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -30,7 +30,7 @@ class Employee(AbstractUser):
 
 
 class Position(models.Model):
-    title = models.CharField(max_length=30, unique=True)
+    title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True)
 
     def save(self, *args, **kwargs):
@@ -55,7 +55,7 @@ class Position(models.Model):
 
 
 class Department(models.Model):
-    title = models.CharField(max_length=30, unique=True)
+    title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True)
 
     def save(self, *args, **kwargs):

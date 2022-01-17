@@ -15,6 +15,8 @@ urlpatterns = [
     path('department/<str:slug>/update', DepartmentUpdate.as_view(), name='department_update_url'),
     path('position/<str:slug>/update', PositionUpdate.as_view(), name='position_update_url'),
     path('department/<str:slug>/delete', DepartmentDelete.as_view(), name='department_delete_url'),
-    path('position/<str:slug>delete', PositionDelete.as_view(), name='position_delete_url')
+    path('position/<str:slug>/delete', PositionDelete.as_view(), name='position_delete_url'),
+    path('position/<str:slug>/detail', PositionDetail.as_view(), name='position_detail_url'),
+    path('department/<str:slug>/detail', DepartmentDetail.as_view(), name='department_detail_url')
 
 ]

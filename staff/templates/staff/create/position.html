@@ -1,27 +1,14 @@
 {% extends 'staff/base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}
       Post create - {{ block.super }}
 {% endblock %}
 {% block content %}
-
-      <form action="{% url 'position_create_url' %}" method="post">
-            {% csrf_token %}
-            {% for fl in form %}
-            <div class="form-group">
-
-                  {% if fl.errors %}
-                        <div class="alert alert-danger">
-                              {{ fl.errors }}
-                        </div>
-                  {% endif %}
-
-                  {{ fl.label }}
-                  {{ fl }}
-
-            </div>
-            {% endfor %}
-            <p></p>
-            <button type="submit" class="btn btn-primary">Create</button>
-      </form>
+<h3>Enter title of new position</h3>
+<form  method="post" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">Create</button>
+</form>
 
 {% endblock %}

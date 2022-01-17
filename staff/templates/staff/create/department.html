@@ -1,27 +1,16 @@
 {% extends 'staff/base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}
-      Post create - {{ block.super }}
+      Department create - {{ block.super }}
 {% endblock %}
 {% block content %}
-
-      <form action="{% url 'department_create_url' %}" method="post">
+<h3>Enter title of new department</h3>
+      <form action="{% url 'department_create_url' %}" method="POST" novalidate>
             {% csrf_token %}
-            {% for fl in form %}
             <div class="form-group">
-
-                  {% if fl.errors %}
-                        <div class="alert alert-danger">
-                              {{ fl.errors }}
-                        </div>
-                  {% endif %}
-
-                  {{ fl.label }}
-                  {{ fl }}
-
+                  {{ form|crispy }}
             </div>
-            {% endfor %}
-            <p></p>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Create department</button>
       </form>
 
 {% endblock %}

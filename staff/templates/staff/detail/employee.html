@@ -1,9 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-ееееееееееееееееееееееееееееееееееееееееееееееееееее
-</body>
-</html>
+{% extends 'staff/base.html' %}
+{% block title %}
+    {{ employee.username }}
+{% endblock %}
+{% block content %}
+    <h1 class="mt-5">
+        {{ employee.full_name }}
+        </h1>
+        <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Department</h5>
+            {% if employee.department %}
+              <p class="card-text">{{ employee.department }}</p>
+              <a href="{{ employee.department.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+            {% else %}
+              <p class="card-text">Department is not selected yet</p>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Position</h5>
+            {% if employee.position %}
+            <p class="card-text">{{ employee.position }}</p>
+            <a href="{{ employee.position.get_absolute_url }}" class="btn btn-primary">Поробнее</a>
+            {% else %}
+              <p class="card-text">Position is not selected yet</p>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
